@@ -144,15 +144,15 @@ const resetApp = () => {
 
 
   return (
-    <div className="min-h-screen p-4 bg-gradient-to-br from-gray-100 to-gray-300">
+    <div className="min-h-screen p-4 bg-gradient-to-br from-gray-100 to-gray-300 w-[100vw] overflow-x-auto text-center">
       {/* Navigation */}
-      <nav className="flex flex-wrap items-center justify-evenly gap-5 py-6 bg-white shadow-md rounded-xl w-[90%] mx-auto">
+      <nav className="flex flex-col col-auto sm:flex-row items-center justify-evenly gap-5 py-6 bg-white shadow-md rounded-xl w-[90%] mx-auto">
         <h2 className="text-2xl font-extrabold">🏠 Home</h2>
-        <Link to="/Account" className="text-blue-600 hover:text-red-800">📝 Account</Link>
-        <button onClick={submitLogout} className="text-purple-700 hover:text-red-800">🚪 Log out</button>
-        <Link to="/about" className="text-purple-600 hover:text-red-800">📖 About</Link>
-        <Link to="/contactUs" className="text-green-600 hover:text-red-800">📞 Contact Us</Link>
-        <button onClick={resetApp} className="text-yellow-600 hover:text-red-800">🗑️ Reset Full App</button>
+        <Link to="/Account" className="text-blue-600 transition-all duration-500 hover:text-red-800">📝 Account</Link>
+        <button onClick={submitLogout} className="text-purple-700 transition-all duration-500 hover:text-red-800">🚪 Log out</button>
+        <Link to="/about" className="text-purple-600 transition-all duration-500 hover:text-red-800">📖 About</Link>
+        <Link to="/contactUs" className="text-green-600 transition-all duration-500 hover:text-red-800">📞 Contact Us</Link>
+        <button onClick={resetApp} className="text-yellow-600 transition-all duration-500 hover:text-red-800">🗑️ Reset Full App</button>
         <ToastContainer position="bottom-center" autoClose={2000}  />
       </nav>
 
@@ -166,7 +166,7 @@ const resetApp = () => {
 ) : loading ? (
   <p className="my-10 text-center">Loading...</p>
 ) : user ? (
-  <table className="w-[90%] mx-auto my-10 bg-white shadow-2xl rounded-xl overflow-hidden">
+  <table className="mx-auto my-10 bg-white shadow-2xl rounded-xl  min-w-[600px] md:min-w-full table-auto">
     <caption className="my-5 text-3xl font-extrabold decoration-dashed">
       💰 Welcome {user.name} to Expense Tracker
     </caption>
@@ -185,7 +185,7 @@ const resetApp = () => {
                   return(
     <tr
       key={e.id}
-      className={`hover:bg-gray-200 ${deleteId === e.id ? "bg-red-100" : ""}`}
+      className={`hover:bg-gray-200 transition-all duration-500 ${deleteId === e.id ? "bg-red-100" : ""}`}
       onClick={() => setDeleteId(e.id)}
     >
       <td className="p-4 border">{idx + 1}</td>
@@ -210,7 +210,7 @@ const resetApp = () => {
 
   </table>
 ) : (
-  <div className="flex flex-col items-center justify-center w-[90%] py-[30vh] text-center text-3xl font-extrabold animate-[float_3s_ease-in-out_infinite] hover:text-red-600">
+  <div className="flex flex-col items-center justify-center w-[90%] py-[30vh] text-center text-3xl font-extrabold animate-[float_3s_ease-in-out_infinite] hover:text-red-600  transition-all duration-500">
     Login to start using the app
   </div>
 )}
@@ -218,13 +218,13 @@ const resetApp = () => {
       {user?<div className="flex justify-center gap-5 w-[90%] mx-auto my-5">
                 <button
                     onClick={() => setShowForm(prev => !prev)}
-                  className="p-4 font-semibold text-white bg-black rounded-xl hover:bg-white hover:text-black"
+                  className="p-4 font-semibold text-white transition-all duration-500 bg-black rounded-xl hover:bg-white hover:text-black"
                 >
                   {showForm ? "Hide" : "Show"} Expense Form
                 </button>
                 <button
           onClick={removeExpense}
-          className={!showForm? "p-4 text-white bg-black rounded-xl hover:bg-white hover:text-black font-semibold" : "hidden"}
+          className={!showForm? "p-4 text-white bg-black rounded-xl transition-all duration-500 hover:bg-white hover:text-black font-semibold" : "hidden"}
                 >
                   Remove Selected Expense
                 </button>

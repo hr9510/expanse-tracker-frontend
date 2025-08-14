@@ -39,7 +39,7 @@ formData.totalBalance = Number(formData.earn) - Number(formData.spend);
           />
           <button
             type="submit"
-            className="py-3 text-lg font-bold text-black transition-colors duration-300 bg-transparent rounded-full hover:bg-white "
+            className="py-3 text-lg font-bold text-black transition-all duration-500 bg-transparent rounded-full hover:bg-white "
           >
             🚀 Add Expense
           </button>

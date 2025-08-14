@@ -54,20 +54,20 @@ export default function Account() {
   };
 
   return (
-    <div className="min-h-screen p-4 bg-gradient-to-br from-gray-100 to-gray-200">
+    <div className="min-h-screen p-4 text-center bg-gradient-to-br from-gray-100 to-gray-200">
       {/* Header */}
-      <div className="w-[90%] bg-white mx-auto flex justify-between items-center my-10 px-6 py-4 rounded-xl shadow-lg">
+      <div className="w-[90%] bg-white mx-auto flex flex-col sm:flex-row justify-between items-center my-10 px-6 py-4 rounded-xl shadow-lg">
         <h1 className="text-2xl font-extrabold text-blue-800 md:text-3xl">
           📝 Account — Expense Tracker
         </h1>
-        <div className="flex gap-4">
-          <Link to="/loginAccount" className="text-lg font-semibold text-blue-600 hover:text-red-800">
+        <div className="flex flex-col gap-4 sm:flex-row pt-[10px] ">
+          <Link to="/loginAccount" className="text-lg font-semibold text-blue-600 transition-all duration-500 hover:text-red-800">
             📝 Login
           </Link>
-          <Link to="/createAccount" className="text-lg font-semibold text-blue-600 hover:text-red-800">
+          <Link to="/createAccount" className="text-lg font-semibold text-blue-600 transition-all duration-500 hover:text-red-800">
             ➕ Create Account
           </Link>
-          <Link to="/" className="text-lg font-semibold text-blue-600 hover:text-red-800">
+          <Link to="/" className="text-lg font-semibold text-blue-600 transition-all duration-500 hover:text-red-800">
             🏠 Home
           </Link>
         </div>
@@ -87,7 +87,7 @@ export default function Account() {
               <div className="flex items-baseline justify-between">
                 <button
                 onClick={() => handleDelete(user)}
-                className="px-4 py-2 mt-3 text-white transition-colors bg-red-500 rounded hover:bg-red-600"
+                className="px-[1vw] py-[1vh] mt-3 text-white bg-red-500 rounded hover:bg-red-600 transition-all duration-500"
               >
                 🗑 Delete Account
               </button>

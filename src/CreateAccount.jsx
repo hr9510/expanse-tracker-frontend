@@ -38,16 +38,16 @@ export default function CreateAccount() {
   };
 
   return (
-    <div className="min-h-screen p-4 bg-gradient-to-br from-gray-100 to-gray-200">
+    <div className="min-h-screen p-4 text-center bg-gradient-to-br from-gray-100 to-gray-200">
       {/* Header */}
-      <div className="w-[90%] bg-white mx-auto flex justify-between items-center my-10 px-6 py-4 rounded-xl shadow-lg">
+      <div className="w-[90%] bg-white mx-auto flex justify-between items-center my-10 px-6 py-4 rounded-xl shadow-lg flex-col md:flex-row space-y-1">
         <h1 className="text-2xl font-extrabold text-blue-800 md:text-3xl">
           📝 Create Account — Expense Tracker
         </h1>
-        <Link to="/Account" className="font-semibold text-blue-600 hover:text-red-800">
+        <Link to="/Account" className="font-semibold text-blue-600 transition-all duration-500 hover:text-red-800">
           📝 Account
         </Link>
-        <Link to="/" className="text-lg font-semibold text-blue-600 hover:text-red-800">
+        <Link to="/" className="text-lg font-semibold text-blue-600 transition-all duration-500 hover:text-red-800">
           🏠 Home
         </Link>
       </div>
@@ -81,14 +81,14 @@ export default function CreateAccount() {
           />
           <button
             type="submit"
-            className="py-3 text-lg font-bold text-white transition-all duration-300 bg-blue-700 rounded-full hover:bg-blue-800"
+            className="py-3 text-lg font-bold text-white transition-all duration-500 bg-blue-700 rounded-full hover:bg-blue-800"
           >
             🚀 Create Account
           </button>
         <ToastContainer position="bottom-right" autoClose={2000}/>
         </form>
         
-          <button onClick={()=>setShow(!show)} className='font-semibold w-[100%] py-3 text-white bg-blue-700 rounded-full hover:bg-blue-800'>
+          <button onClick={()=>setShow(!show)} className='font-semibold w-[100%] py-3 text-white bg-blue-700 rounded-full transition-all duration-500 hover:bg-blue-800'>
             {show?"SHOW":"HIDE"}
           </button>
       </div>
