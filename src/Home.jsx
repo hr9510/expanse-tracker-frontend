@@ -27,7 +27,7 @@ function Home() {
 
   const fetchLoggedInUser = async () => {
     try {
-      const res = await fetch("http://localhost:5000/get-login-user");
+      const res = await fetch("https://expanse-tracker-backend-pg8i.onrender.com/get-login-user");
       const data = await res.json();
       setUser(data[0] || null);
       setFormData(prev => ({ ...prev, email: data[0]?.email || "" }));
@@ -40,7 +40,7 @@ function Home() {
 
   const fetchExpenses = async email => {
     try {
-      const res = await fetch("http://localhost:5000/get-expanses");
+      const res = await fetch("https://expanse-tracker-backend-pg8i.onrender.com/get-expanses");
       const expList = await res.json();
       setExpenses(expList.filter(e => e.email === email));
     } catch (e) {
@@ -74,7 +74,7 @@ function Home() {
     }
     try {
       
-      await fetch("http://localhost:5000/add-expanse", {
+      await fetch("https://expanse-tracker-backend-pg8i.onrender.com/add-expanse", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -98,7 +98,7 @@ function Home() {
     if (expenses.length !== 0) {
       if (!deleteId) return toast.warn("Select an expense row");
     try {
-      await fetch("http://localhost:5000/remove-expanses", {
+      await fetch("https://expanse-tracker-backend-pg8i.onrender.com/remove-expanses", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(deleteId),
@@ -117,7 +117,7 @@ function Home() {
   const submitLogout = async () => {
     if (!user) return toast.warn("Already logged out");
     try {
-      await fetch("http://localhost:5000/delete-login-user");
+      await fetch("https://expanse-tracker-backend-pg8i.onrender.com/delete-login-user");
       toast.success("Logged out successfully");
       window.location.reload();
     } catch (err) {
@@ -132,7 +132,7 @@ const resetApp = () => {
   } else {
     if (!window.confirm("Want to reset full app? This action is irreversible.")) return;
 
-  fetch("http://localhost:5000/reset-app", { method: "GET" })
+  fetch("https://expanse-tracker-backend-pg8i.onrender.com/reset-app", { method: "GET" })
     .then(res => res.json())
     .catch(err => {
       console.error("Reset failed", err);

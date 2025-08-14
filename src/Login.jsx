@@ -15,7 +15,7 @@ export default function LoginAccount() {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("http://localhost:5000/get-user");
+      const res = await fetch("https://expanse-tracker-backend-pg8i.onrender.com/get-user");
       const data = await res.json();
       setUsers(data);
     } catch (err) {
@@ -46,7 +46,7 @@ const handleSubmit = async e => {
   }
 
   try {
-    await fetch("http://localhost:5000/login", {
+    await fetch("https://expanse-tracker-backend-pg8i.onrender.com/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
