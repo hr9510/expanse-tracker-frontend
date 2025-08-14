@@ -210,7 +210,7 @@ const resetApp = () => {
 
   </table>
 ) : (
-  <div className="flex flex-col items-center justify-center w-[90%] py-[10vh] text-center text-3xl font-extrabold animate-[float_3s_ease-in-out_infinite] hover:text-red-600  transition-all duration-500">
+  <div className=" w-full py-[10vh] text-center text-3xl font-extrabold animate-[float_3s_ease-in-out_infinite] hover:text-red-600  transition-all duration-500">
     Login to start using the app
   </div>
 )}
