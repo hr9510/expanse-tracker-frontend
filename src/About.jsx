@@ -5,7 +5,7 @@ export default function About() {
   return (
     <div className="min-h-screen p-4 bg-gradient-to-br from-gray-100 to-gray-200">
       {/* Header */}
-      <div className="w-[90%] bg-white mx-auto flex justify-between items-center my-10 px-6 py-4 rounded-xl shadow-lg">
+      <div className="w-[90%] bg-white mx-auto flex justify-between text-center space-x-4 items-center my-10 px-6 py-4 rounded-xl shadow-lg">
         <h1 className="text-2xl font-extrabold text-blue-800 md:text-3xl">
           ℹ️ About Us — Expense Tracker
         </h1>

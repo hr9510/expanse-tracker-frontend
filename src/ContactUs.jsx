@@ -5,7 +5,7 @@ export default function ContactUs() {
   return (
     <div className="min-h-screen p-4 bg-gradient-to-br from-gray-100 to-gray-200">
       {/* Header */}
-      <div className="w-[90%] bg-white mx-auto flex justify-between items-center my-10 px-6 py-4 rounded-xl shadow-lg">
+      <div className="w-[90%] bg-white mx-auto flex justify-between space-x-4 items-center my-10 px-6 py-4 rounded-xl shadow-lg text-center">
         <h1 className="text-2xl font-extrabold text-blue-800 md:text-3xl">📞 Contact Us — Expense Tracker</h1>
         <Link to="/" className="text-lg font-semibold text-blue-600">
           🏠 Go to HOME Page
