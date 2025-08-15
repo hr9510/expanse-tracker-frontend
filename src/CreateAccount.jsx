@@ -22,7 +22,7 @@ export default function CreateAccount() {
     }
 
     try {
-      const res = await fetch("http://expanse-tracker-backend-atv7.onrender.com/", {
+      const res = await fetch("https://expanse-tracker-backend-atv7.onrender.com/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
