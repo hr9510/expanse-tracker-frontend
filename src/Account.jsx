@@ -26,7 +26,6 @@ export default function Account() {
       try {
         const res = await fetch("https://expanse-tracker-backend-pg8i.onrender.com/get-login-user");
         const data = await res.json();
-        console.log(data)
         setLoginUser(data)
       } catch (e) {
         toast.error("Error fetching user");
