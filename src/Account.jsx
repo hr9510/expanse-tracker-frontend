@@ -14,7 +14,7 @@ export default function Account() {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("https://expanse-tracker-backend-pg8i.onrender.com/get-user");
+      const res = await fetch("http://expanse-tracker-backend-atv7.onrender.com/get-user");
       const data = await res.json();
       setUsers(data);
     } catch (err) {
@@ -24,7 +24,7 @@ export default function Account() {
 
     const fetchLoggedInUser = async () => {
       try {
-        const res = await fetch("https://expanse-tracker-backend-pg8i.onrender.com/get-login-user");
+        const res = await fetch("http://expanse-tracker-backend-atv7.onrender.com/get-login-user");
         const data = await res.json();
         setLoginUser(data)
       } catch (e) {
@@ -39,7 +39,7 @@ export default function Account() {
     if (!window.confirm(`Delete account for ${user.name}? This action is irreversible.`)) return;
 
     try {
-      await fetch("https://expanse-tracker-backend-pg8i.onrender.com/delete-user", {
+      await fetch("http://expanse-tracker-backend-atv7.onrender.com/delete-user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user.email),
