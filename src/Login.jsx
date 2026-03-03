@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function LoginAccount() {
-  const [formData, setFormData] = useState({ name: "", password: "" });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [lastLogin, setLastLogin] = useState(null);
   const [users, setUsers] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
@@ -15,7 +15,9 @@ export default function LoginAccount() {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("https://expanse-tracker-backend-atv7.onrender.com/get-user");
+      const res = await fetch("http://localhost:5000/get-user", {
+        credentials: "include"
+      });
       const data = await res.json();
       setUsers(data);
     } catch (err) {
@@ -34,30 +36,33 @@ const handleSubmit = async e => {
     return toast.warn("Create an account first then login");
   }
 
-  const { name, password } = formData;
+  const { email, password } = formData;
 
-  if (!name.trim() || !password.trim()) {
+  if (!email.trim() || !password.trim()) {
     return toast.warn("Please fill all fields");
   }
 
-  const match = users.find(u => u.name === name && u.password === password);
-  if (!match) {
-    return toast.warn("Invalid credentials");
-  }
-
   try {
-    await fetch("https://expanse-tracker-backend-atv7.onrender.com/login", {
+    let res = await fetch("http://localhost:5000/login", {
+      credentials : "include",
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
+      credentials: "include"
     });
-    toast.success("Logged in successfully");
-    setLastLogin({ name });
-    setFormData({ name: "", password: "" });
-  } catch (err) {
-    console.error("Login failed:", err);
-    toast.error("Login failed!");
+    setFormData({ email: "", password: "" });
+    let data = await res.json();
+    if(data.error){
+      throw new Error(data.error)
+    }
+    else {
+      toast.success("Logged in successfully");
+    setLastLogin({ email });
   }
+} catch (err) {
+  console.error("Login failed:", err);
+  toast.error("Invalid email or password");
+}
 };
 
 
@@ -82,10 +87,10 @@ const handleSubmit = async e => {
       <div className="w-full max-w-md p-8 mx-auto bg-white shadow-2xl rounded-xl shadow-green-600">
         <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
           <input
-            type="text"
-            name="name"
-            placeholder="👤 Name"
-            value={formData.name}
+            type="email"
+            name="email"
+            placeholder="👤 Email"
+            value={formData.email}
             onChange={handleChange}
             className="px-5 py-3 bg-gray-100 rounded-full focus:outline-none"
           />
@@ -117,7 +122,7 @@ const handleSubmit = async e => {
       {lastLogin && (
         <div className="w-[90%] mx-auto mt-10 p-4 bg-white rounded-lg shadow-md">
           <h2 className="text-xl font-semibold text-gray-800">Last Login</h2>
-          <p className="mt-2 text-gray-600">Name: {lastLogin.name}</p>
+          <p className="mt-2 text-gray-600">Email: {lastLogin.email}</p>
         </div>
       )}
     </div>

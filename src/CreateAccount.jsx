@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function CreateAccount() {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
-  const [createdUser, setCreatedUser] = useState(null);
+  const [createdUser, setCreatedUser] = useState([]);
   const [show, setShow] = useState(true)
 
   const handleChange = (e) => {
@@ -22,14 +22,15 @@ export default function CreateAccount() {
     }
 
     try {
-      const res = await fetch("https://expanse-tracker-backend-atv7.onrender.com/", {
+      const res = await fetch("http://localhost:5000/", {
+        credentials : "include",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       if (!res.ok) throw new Error("Server error");
 
-      setCreatedUser(formData);
+      setCreatedUser(prev => [...prev, formData]);
       setFormData({ name: "", email: "", password: "" });
       toast.success("Account created successfully!");
     } catch (err) {
@@ -94,14 +95,16 @@ export default function CreateAccount() {
       </div>
 
       {/* Confirmation */}
-      {createdUser && (
-        <div className="w-[90%] mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+      {createdUser.length > 0 && (
+        createdUser.map((user, index) => (
+          <div key={index} className="w-[90%] mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
           <h2 className="text-xl font-semibold text-gray-800">
             Account Created Successfully!
           </h2>
-          <p className="mt-2 text-gray-600">Name: {createdUser.name}</p>
-          <p className="text-gray-600">Email: {createdUser.email}</p>
+          <p className="mt-2 text-gray-600">Name: {user.name}</p>
+          <p className="text-gray-600">Email: {user.email}</p>
         </div>
+        ))
       )}
     </div>
   );

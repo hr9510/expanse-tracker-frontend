@@ -1,7 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function AddForm({ handleSubmit, formData, handleChanging}) {
+export default function AddForm({ handleSubmit, formData, handleChanging, updating, updateExpense}) {
 formData.totalBalance = Number(formData.earn) - Number(formData.spend);
 
   return (
@@ -10,7 +10,7 @@ formData.totalBalance = Number(formData.earn) - Number(formData.spend);
     >
       <div className="flex items-center justify-center w-full h-full backdrop-blur-sm">
         <form
-          onSubmit={handleSubmit}
+          onSubmit={updating ? updateExpense : handleSubmit}
           className="flex flex-col w-11/12 p-6 space-y-6 bg-transparent md:w-2/5 rounded-xl"
         >
           <input
@@ -41,7 +41,7 @@ formData.totalBalance = Number(formData.earn) - Number(formData.spend);
             type="submit"
             className="py-3 text-lg font-bold text-black transition-all duration-500 bg-transparent rounded-full hover:bg-white "
           >
-            🚀 Add Expense
+            {updating ? "Update Expense" : "Add Expense"}
           </button>
         </form>
       </div>

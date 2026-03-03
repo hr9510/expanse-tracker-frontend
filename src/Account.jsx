@@ -14,7 +14,9 @@ export default function Account() {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("https://expanse-tracker-backend-atv7.onrender.com/get-user");
+      const res = await fetch("http://localhost:5000/get-user", {
+        credentials: "include"
+      });
       const data = await res.json();
       setUsers(data);
     } catch (err) {
@@ -24,7 +26,9 @@ export default function Account() {
 
     const fetchLoggedInUser = async () => {
       try {
-        const res = await fetch("https://expanse-tracker-backend-atv7.onrender.com/get-login-user");
+        const res = await fetch("http://localhost:5000/get-login-user", {
+          credentials: "include"
+        });
         const data = await res.json();
         setLoginUser(data)
       } catch (e) {
@@ -39,7 +43,8 @@ export default function Account() {
     if (!window.confirm(`Delete account for ${user.name}? This action is irreversible.`)) return;
 
     try {
-      await fetch("https://expanse-tracker-backend-atv7.onrender.com/delete-user", {
+      await fetch("http://localhost:5000/delete-user", {
+        credentials : "include",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user.email),
@@ -93,7 +98,7 @@ export default function Account() {
               <p
                 className={user.email === loginUser?.[0]?.email ? "px-4 py-2 font-semibold text-green-700" : "px-4 py-2 font-semibold text-red-700"}
               >
-                 {user.email === loginUser?.[0]?.email ? "LOGGED IN" : "UN-LOGGED IN"}
+                 {user.email === loginUser?.[0]?.email ? "LOGGED IN" : "NOT LOGGED IN"}
               </p>
               </div>
             </div>
